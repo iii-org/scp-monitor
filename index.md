@@ -1,10 +1,5 @@
 # SCP (Secure Copy) MONITOR
 
-You can use the [editor on GitHub](https://github.com/iii-org/scp-monitor/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-
 ## 使用情境
 製造業者因資安考量，會將機台日誌檔案上傳至遠端特定資料夾，由資訊人員讀取檔案，進而分析數據。許多工廠是數百至數千個機台長期運轉，每日產出超大量的機台日誌檔案，亟需有效讀取檔案的輔助工具。SCP MONITOR改良一般開源軟體重複讀取所有檔案的模式，針對機台日誌檔案具有時間序的特性，使用本工具之應用程式，依所議定之時間間隔定時上傳機台日誌，能讀取最新且未處理過的檔案，並採用SFTP安全檔案傳遞協定，達到實時監控、安心讀檔。
 
@@ -112,31 +107,3 @@ Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://j
 		    e.printStackTrace();    
     };    
     
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/iii-org/scp-monitor/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
