@@ -53,6 +53,66 @@ Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://j
     </tr>
 </table>
 
+### 檔案源AccessPoint屬性
+
+<table>
+    <tr>
+        <td>屬性名</td>
+        <td>型態</td>
+        <td>用途</td>
+    </tr>
+    <tr>
+        <td>user</td>
+        <td>String</td>
+        <td>遠端SFTP帳號</td>
+    </tr>
+    <tr>
+        <td>password</td>
+        <td>String</td>
+        <td>遠端SFTP密碼</td>
+    </tr>
+    <tr>
+        <td>url</td>
+        <td>String</td>
+        <td>遠端FTP IP</td>
+    </tr>
+    <tr>
+        <td>dir</td>
+        <td>String[]</td>
+        <td>欲監控之資料夾</td>
+    </tr>
+</table>
+
+### 使用範例
+
+  1. 產生物件ScpMonitor並提供前綴詞、日期樣式、後綴詞、read buffer做為建構子參數。
+  2. 設定欲從哪個日期開始處理檔案(該日期樣式需與建構子之日期樣式一致)。
+  3. 為物件ScpMonitor添加檔案源之設定。
+  4. 重複呼叫method next()以讀取檔案。該next()回傳值為一Map物件，其中key為檔名，value則為二進位形式回傳之檔案。而若next()回傳空Map物件時則代表所指定之資料夾已經既有的檔案皆讀取完畢。
+
+    
+    (1)    ScpMonitor scpMonitor = new ScpMonitor("III_ARILOG_",  new SimpleDateFormat("yyyyMMdd"), "*.zip", 50000000);    
+    (2)    scpMonitor.setFromDate("20211111");    
+    (3)    scpMonitor.add(new AccessPoint("user", "passwd",  "192.168.1.100",  "/home/iii/III01" ));    
+    scpMonitor.add(new AccessPoint("user", "passwd",  "192.168.1.101",  "/home/iii/III02" ));    
+    try {    
+    (4) 	  Map<String, byte[]> remoteFiles = scpMonitor.next();    
+      System.out.println(remoteFiles.size());    
+      for(String zip : remoteFiles.keySet()){    
+      	System.out.println(zip + ": " + remoteFiles.get(zip).length);    
+      }    
+      
+      remoteFiles = scpMonitor.next();    
+      System.out.println(remoteFiles.size());    
+      for(String zip : remoteFiles.keySet()){    
+      	System.out.println(zip + ": " + remoteFiles.get(zip).length);    
+      }    
+	   } catch (Exception e) {    
+		    // TODO Auto-generated catch block    
+		    e.printStackTrace();    
+    };    
+    
+
 ### Markdown
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
